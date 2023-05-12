@@ -1,0 +1,41 @@
+.todo_generator{
+  border: 2px solid #000;
+  border-radius: 2rem;
+}
+
+.todo_generator > p{
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #7eba94;
+}
+
+.todo_generator--form{
+  padding: 2rem;
+}
+
+.todo_generator--form div{
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.todo_generator--form input{
+  border: 2px solid #000;
+  height: 60px;
+  border-radius: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.todo_generator--form input:focus{
+  outline: 3px solid #8584ad;
+  border: none;
+}
+
+.todo_generator--form input::placeholder{
+  text-align: center;
+  font-size: 1.4rem;
+}
