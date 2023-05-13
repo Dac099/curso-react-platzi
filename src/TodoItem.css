@@ -1,0 +1,41 @@
+li{
+  list-style: none;
+  width: 100%;
+  height: 100%;
+}
+
+.todo_card{
+  width: 100%;
+  height: 100%;
+  border: 2px solid #000;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  grid-template-rows: 70% 30%;
+}
+
+.todo_card p:nth-child(1){
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.todo_card p:nth-child(2){
+  display: grid;
+  place-content: center;
+  background-color: #fff;
+  border-bottom-left-radius: 15px;
+}
+
+.todo_card p:nth-child(3){
+  grid-row: 1/3;
+  grid-column: 2/3;
+  background-color: #c1bffa;
+  border-radius: 0px 15px 15px 0px;
+  display: grid;
+  place-content: center;
+  color: #ffdc99;
+  font-weight: bold;
+  font-size: 1.8rem;
+  cursor: pointer;
+}

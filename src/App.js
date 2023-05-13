@@ -10,19 +10,22 @@ const defaultTodos = [
     title: "Apagar el sol",
     completed: false,
     color: "#CCE4F7",
-    category: "Trabajo"
+    category: "Trabajo",
+    date: getCurrentDate(),
   },
   {
     title: "Hacer sopa de piedras",
     completed: true,
     color: "#7EBA94",
-    category: "Hogar"
+    category: "Hogar",
+    date: getCurrentDate(),
   },
   {
     title: "Publicar Xbox Series P",
     completed: false,
     color: "#009933",
-    category: "Ocio"
+    category: "Ocio",
+    date: getCurrentDate(),
   },
 ];
 
@@ -31,7 +34,11 @@ const defaultCategories = [
   "Pareja",
   "Hogar",
   "Programacion",
-  "Ocio"
+  "Ocio",
+  "dasdsad",
+  "dskajdlksajdlkasjdlkajd",
+  "dskajdklajdkla",
+  "asjklajdklasjd",
 ];
 
 const defaultCompletedTodos = [
@@ -39,9 +46,20 @@ const defaultCompletedTodos = [
     title: "Hacer sopa de piedras",
     completed: true,
     color: "#7EBA94",
-    category: "Hogar"
+    category: "Hogar",
+    date: getCurrentDate(),
   },
 ];
+
+function getCurrentDate(){
+  const date = new Date();
+
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+
+  return `${day}/${month}/${year}`;
+}
 
 function App() {
   return (
@@ -50,7 +68,7 @@ function App() {
         <TodoGenerator />
       </section>
 
-      <section>
+      <section className='todos_container'>
         <Categories categories={defaultCategories}/>
 
         <TodoList> 
@@ -59,11 +77,14 @@ function App() {
               key={todo.title}
               title={todo.title} 
               completed={todo.completed} 
+              date={todo.date}
             />
           ))}
         </TodoList>  
 
         <CompletedTodos completed_todos={defaultCompletedTodos}/>
+
+        <button type='button' className='completed_btn'>Completed TODOs</button>
       </section>  
     </>
   );

@@ -1,0 +1,7 @@
+.list_container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(auto-fill, 100px);
+  gap: 2rem;
+  padding-top: 1rem;
+}

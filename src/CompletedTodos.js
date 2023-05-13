@@ -1,6 +1,8 @@
+import './CompletedTodos.css';
+
 function CompletedTodos(props){
   return (
-    <article>
+    <article className='completed_container'>
       <section>
         {props.completed_todos.map(todo => (
           <div key={todo.title}>

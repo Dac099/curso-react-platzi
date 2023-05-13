@@ -1,0 +1,6 @@
+.completed_container{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  display: none;
+}
