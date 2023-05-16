@@ -3,13 +3,31 @@
   bottom: 120px;
   right: 50px;
   border: 2px solid #000;
-  border-radius: 2rem;
+  border-radius: 1rem;
   padding: 1rem;
   width: 300px;
   display: grid;
   grid-template-rows: min-content 60px;
   align-content: center;
   gap: 1rem;
+}
+
+.completed_container--empty{
+  position: absolute;
+  bottom: 120px;
+  right: 50px;
+  border: 2px solid #000;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: max-content;
+  display: grid;
+  place-content: center;
+}
+
+.completed_container--empty p{
+  font-size: 1.2rem;
+  color: #ff3e3e;
+  font-weight: 600;
 }
 
 .completed_container div{

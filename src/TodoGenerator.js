@@ -21,7 +21,7 @@ function getRandomPlaceholder(){
 function TodoGenerator() {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-  const [color, setColor] = useState('');
+  const [color, setColor] = useState('#000000');
 
   function handleSubmit(e){
     e.preventDefault();

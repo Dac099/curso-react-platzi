@@ -9,33 +9,25 @@ import React, { useState } from 'react';
 const defaultTodos = [
   {
     title: "Apagar el sol",
-    completed: true,
+    completed: false,
     color: "#CCE4F7",
     category: "Trabajo",
     date: getCurrentDate(),
   },
   {
     title: "Hacer sopa de piedras",
-    completed: true,
+    completed: false,
     color: "#7EBA94",
     category: "Hogar",
     date: getCurrentDate(),
   },
   {
     title: "Publicar Xbox Series P",
-    completed: true,
+    completed: false,
     color: "#009933",
     category: "Ocio",
     date: getCurrentDate(),
   },
-];
-
-const defaultCategories = [
-  "Trabajo",
-  "Pareja",
-  "Hogar",
-  "Programacion",
-  "Ocio",
 ];
 
 function getCurrentDate(){
@@ -49,7 +41,8 @@ function getCurrentDate(){
 
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
-  const completedTodos = todos.filter(todo => todo.completed);
+  const [categories, setCategories] = useState(todos.map(todo => todo.category));
+  const [indexCategory, setIndexCategory] = useState(-1);
 
   return (
     <>  
@@ -58,20 +51,41 @@ function App() {
       </section>
 
       <section className='todos_container'>
-        <Categories categories={defaultCategories}/>
+        <Categories 
+          categories={categories} 
+          indexCategory={indexCategory}
+          setIndexCategory={setIndexCategory}
+        />
 
         <TodoList> 
-          {todos.map(todo => (
-            <TodoItem 
-              key={todo.title}
-              title={todo.title} 
-              completed={todo.completed} 
-              date={todo.date}
-            />
-          ))}
+          {indexCategory === -1 && 
+            todos.map(todo => (
+              <TodoItem  
+                key={todo.title}
+                title={todo.title} 
+                completed={todo.completed} 
+                date={todo.date}
+              />
+            ))
+          }
+
+          {(indexCategory !== -1) &&
+            todos
+              .filter(todo => todo.category === categories[indexCategory])
+              .map(todo => (
+                <TodoItem  
+                  setTodos={setTodos}
+                  todos={todos}
+                  key={todo.title}
+                  title={todo.title} 
+                  completed={todo.completed} 
+                  date={todo.date}
+                />
+              ))
+          }
         </TodoList>  
 
-        <CompletedTodos completed_todos={completedTodos}/>
+        <CompletedTodos completed_todos={todos.filter(todo => todo.completed)}/>
       </section>  
     </>
   );

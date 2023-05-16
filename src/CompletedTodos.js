@@ -4,9 +4,29 @@ import React, { useState } from 'react';
 function CompletedTodos(props){
   const [showCompletedTodos, setShowCompletedTodos] = useState(false)
 
+
+  if(props.completed_todos.length < 1){
+    return (
+      <article>
+        {showCompletedTodos && 
+          <section className='completed_container--empty'>
+            <p>No tienes TODOs completados</p>
+          </section>
+        }
+
+        <button 
+          type='button'
+          className='completed_btn'
+          onClick={() => setShowCompletedTodos(!showCompletedTodos)}
+        >
+          Completed TODOs
+        </button>
+      </article>
+    );
+  }
+
   return (
     <article>
-      
       {showCompletedTodos && 
         <section className='completed_container'>
           <section>
