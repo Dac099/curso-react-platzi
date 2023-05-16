@@ -12,19 +12,6 @@
   display: grid;
   grid-template-rows: minmax(min-content,8%) minmax(min-content,92%);
   z-index: 1;
+  position: relative;
 }
 
-.completed_btn{
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  height: 60px;
-  width: 200px;
-  border-radius: 1rem;
-  border: 2px solid #000;
-  background-color: #ffdc99;
-  font-size: 1rem;
-  font-weight: 600;
-  word-spacing: 5px;
-  cursor: pointer;
-}

@@ -1,18 +1,39 @@
 import './CompletedTodos.css';
+import React, { useState } from 'react';
 
 function CompletedTodos(props){
-  return (
-    <article className='completed_container'>
-      <section>
-        {props.completed_todos.map(todo => (
-          <div key={todo.title}>
-            <p>{todo.title}</p>
-            <p>{todo.category}</p>
-          </div>
-        ))}
-      </section>
+  const [showCompletedTodos, setShowCompletedTodos] = useState(false)
 
-      <button type="button">Eliminar TODOs</button>
+  return (
+    <article>
+      
+      {showCompletedTodos && 
+        <section className='completed_container'>
+          <section>
+            {props.completed_todos.map(todo => (
+
+              <div 
+                key={todo.title} 
+                style={{borderColor: todo.color}}
+              >
+                <p>{todo.title}</p>
+                <p>{todo.category}</p>
+              </div>
+            ))}
+          </section>
+
+          <button type="button">Eliminar TODOs</button>
+        </section>
+      }
+
+      <button 
+        type='button'
+        className='completed_btn'
+        onClick={() => setShowCompletedTodos(!showCompletedTodos)}
+      >
+        Completed TODOs
+      </button>
+
     </article>
   );
 }

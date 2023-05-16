@@ -43,7 +43,7 @@ function TodoGenerator() {
             id="title" 
             type="text" 
             placeholder={getRandomPlaceholder()}
-            // value={title}
+            value={title}
             onChange={e => setTitle(e.target.value)}
           ></input>
         </div>
@@ -54,7 +54,7 @@ function TodoGenerator() {
             name="category" 
             id="category" 
             type="text"
-            // value={category}
+            value={category}
             onChange={e => setCategory(e.target.value)}
           ></input>
         </div>
@@ -65,7 +65,7 @@ function TodoGenerator() {
             name="color" 
             id="color" 
             type="color"
-            // value={color}
+            value={color}
             onChange={e => setColor(e.target.value)}
           ></input>
         </div>

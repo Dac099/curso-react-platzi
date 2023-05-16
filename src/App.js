@@ -4,11 +4,12 @@ import { CompletedTodos } from './CompletedTodos';
 import { TodoGenerator } from './TodoGenerator';
 import { TodoItem } from './TodoItem';
 import { TodoList } from './TodoList';
+import React, { useState } from 'react';
 
 const defaultTodos = [
   {
     title: "Apagar el sol",
-    completed: false,
+    completed: true,
     color: "#CCE4F7",
     category: "Trabajo",
     date: getCurrentDate(),
@@ -22,7 +23,7 @@ const defaultTodos = [
   },
   {
     title: "Publicar Xbox Series P",
-    completed: false,
+    completed: true,
     color: "#009933",
     category: "Ocio",
     date: getCurrentDate(),
@@ -35,25 +36,10 @@ const defaultCategories = [
   "Hogar",
   "Programacion",
   "Ocio",
-  "dasdsad",
-  "dskajdlksajdlkasjdlkajd",
-  "dskajdklajdkla",
-  "asjklajdklasjd",
-];
-
-const defaultCompletedTodos = [
-  {
-    title: "Hacer sopa de piedras",
-    completed: true,
-    color: "#7EBA94",
-    category: "Hogar",
-    date: getCurrentDate(),
-  },
 ];
 
 function getCurrentDate(){
   const date = new Date();
-
   const day = date.getDate().toString().padStart(2, '0');
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   const year = date.getFullYear().toString();
@@ -62,6 +48,9 @@ function getCurrentDate(){
 }
 
 function App() {
+  const [todos, setTodos] = useState(defaultTodos);
+  const completedTodos = todos.filter(todo => todo.completed);
+
   return (
     <>  
       <section className='generator_container'>
@@ -72,7 +61,7 @@ function App() {
         <Categories categories={defaultCategories}/>
 
         <TodoList> 
-          {defaultTodos.map(todo => (
+          {todos.map(todo => (
             <TodoItem 
               key={todo.title}
               title={todo.title} 
@@ -82,9 +71,7 @@ function App() {
           ))}
         </TodoList>  
 
-        <CompletedTodos completed_todos={defaultCompletedTodos}/>
-
-        <button type='button' className='completed_btn'>Completed TODOs</button>
+        <CompletedTodos completed_todos={completedTodos}/>
       </section>  
     </>
   );
