@@ -2,8 +2,8 @@ import "./Categories.css";
 
 function Categories(props){
 
-  function setSelectedStyle(index){
-    if(index === props.indexCategory){
+  function setSelectedStyle(category){
+    if(category === props.categorySelected){
       return 'selected';
     }
   }
@@ -16,21 +16,24 @@ function Categories(props){
         <ul>
 
           <li
-            onClick={() => props.setIndexCategory(-1)} 
-            className={setSelectedStyle(-1)} 
+            onClick={() => props.setCategorySelected('all')} 
+            className={setSelectedStyle('all')} 
           >
             Todos
           </li>
 
-          {props.categories.map((category, index) => (
-            <li 
-              key={category}
-              onClick={() => props.setIndexCategory(index)}
-              className={setSelectedStyle(index)}
-            >
-              {category}
-            </li>
-          ))}
+          {props.todos
+            .filter(todo => todo.completed === false)
+            .map(todo => (
+              <li 
+                key={todo.category}
+                onClick={() => props.setCategorySelected(todo.category)}
+                className={setSelectedStyle(todo.category)}
+              >
+                {todo.category}
+              </li>
+            ))
+          }
 
         </ul>
       </nav>

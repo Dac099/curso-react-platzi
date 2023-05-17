@@ -4,6 +4,7 @@
   display: grid;
   grid-template-rows: minmax(min-content, 5%) minmax(min-content,95%);
   min-height: 560px;
+  height: 100%;
   background-color: #7eba94;
 }
 
@@ -41,7 +42,6 @@
 }
 
 .todo_generator--form div:nth-child(3) input{
-  appearance: none;
   -webkit-appearance: none;
   border: none;
   width: 60px;

@@ -5,3 +5,19 @@
   gap: 2rem;
   padding-top: 1rem;
 }
+
+.list_container__empty{
+  display: grid;
+  place-content: center;
+}
+
+.list_container__empty p{
+  font-size: 2.5rem;
+  animation: dongle 1s ease-out alternate infinite;
+  cursor: default;
+}
+
+@keyframes dongle{
+  0% {transform: translateY(-15px);}
+  100% {transform: translateY(-100px);}
+}

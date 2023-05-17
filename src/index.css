@@ -15,7 +15,7 @@ body {
 #root{
   height: 100%;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: minmax(20%, 500px) 70%;
 }
 
 code {

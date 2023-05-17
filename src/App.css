@@ -1,10 +1,7 @@
 .generator_container{
   padding: 1rem;
-  display: grid;
   max-width: 500px;
-  margin: 0 auto;
-  grid-template-columns: 500px;
-  justify-self: center;
+  min-height: 100%;
 }
 
 .todos_container{

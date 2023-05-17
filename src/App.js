@@ -41,8 +41,7 @@ function getCurrentDate(){
 
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
-  const [categories, setCategories] = useState(todos.map(todo => todo.category));
-  const [indexCategory, setIndexCategory] = useState(-1);
+  const [categorySelected, setCategorySelected] = useState('all');
 
   return (
     <>  
@@ -52,26 +51,30 @@ function App() {
 
       <section className='todos_container'>
         <Categories 
-          categories={categories} 
-          indexCategory={indexCategory}
-          setIndexCategory={setIndexCategory}
+          categorySelected={categorySelected}
+          setCategorySelected={setCategorySelected}
+          todos={todos}
         />
 
-        <TodoList> 
-          {indexCategory === -1 && 
-            todos.map(todo => (
-              <TodoItem  
-                key={todo.title}
-                title={todo.title} 
-                completed={todo.completed} 
-                date={todo.date}
-              />
-            ))
+        <TodoList todos={todos}> 
+          {categorySelected === 'all' && 
+            todos
+              .filter(todo => todo.completed === false)
+              .map(todo => (
+                <TodoItem  
+                  setTodos={setTodos}
+                  key={todo.title}
+                  todos={todos}
+                  title={todo.title} 
+                  completed={todo.completed} 
+                  date={todo.date}
+                />
+              ))
           }
 
-          {(indexCategory !== -1) &&
+          {(categorySelected !== 'all') &&
             todos
-              .filter(todo => todo.category === categories[indexCategory])
+              .filter(todo => (todo.category === categorySelected && todo.completed === false))
               .map(todo => (
                 <TodoItem  
                   setTodos={setTodos}
@@ -85,7 +88,11 @@ function App() {
           }
         </TodoList>  
 
-        <CompletedTodos completed_todos={todos.filter(todo => todo.completed)}/>
+        <CompletedTodos 
+          completed_todos={todos.filter(todo => todo.completed)}
+          todos={todos}
+          setTodos={setTodos}
+        />
       </section>  
     </>
   );

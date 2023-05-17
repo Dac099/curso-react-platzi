@@ -1,16 +1,18 @@
 import './TodoItem.css';
 
-function TodoItem({title, completed, date, setTodos,todos}){
+function TodoItem({title, completed, date, setTodos, todos}){
   
   function completeTodo(todo_title){
-      const itemTarget = todos.find(todo => todo.title === todo_title);
-      const itemIndex = todos.find(todo => todo.title === todo_title);
+    const todos_copy = [...todos];
+    const item_target = todos_copy.find(todo => todo.title.toLowerCase() === todo_title.toLowerCase());
+    const item_index = todos_copy.findIndex(todo => todo.title === todo_title);
 
-      itemTarget.completed = true;
+    todos_copy[item_index] = {
+      ...item_target,
+      completed: true,
+    };
 
-      prevTodos[itemIndex] = itemTarget;
-
-      return prevTodos;
+    setTodos(todos_copy);
   }
 
   return (
