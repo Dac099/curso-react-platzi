@@ -4,12 +4,7 @@ import React, { useState } from 'react';
 function CompletedTodos(props){
   const [showCompletedTodos, setShowCompletedTodos] = useState(false)
 
-  function deleteTodos(){
-    const todos_copy = [...props.todos];
-    const uncompleted_todos = todos_copy.filter(todo => todo.completed === false);
-
-    props.setTodos(uncompleted_todos);
-  }
+  
 
   if(props.completed_todos.length < 1){
     return (
@@ -50,7 +45,7 @@ function CompletedTodos(props){
 
           <button 
             type="button"
-            onClick={deleteTodos}
+            onClick={props.deleteTodos}
           >
             Eliminar TODOs
           </button>
