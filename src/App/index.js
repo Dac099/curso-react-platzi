@@ -6,6 +6,7 @@ import { TodoItem } from '../TodoItem';
 import { TodoList } from '../TodoList';
 import React, { useState } from 'react';
 import { useLocalStorage } from '../Hooks/useLocalStorage';
+import { LoadingSkeleton } from '../LoadingSkeleton';
 
 // const defaultTodos = [
 //   {
@@ -42,7 +43,12 @@ import { useLocalStorage } from '../Hooks/useLocalStorage';
 
 
 function App() {
-  const [todos, saveTodos] = useLocalStorage('TODOS_SAVED', []);
+  const {
+    item: todos,
+    saveItems: saveTodos,
+    isLoading,
+    onError
+  } = useLocalStorage('TODOS_SAVED', []);
   const [categorySelected, setCategorySelected] = useState('all');
 
   function deleteTodos(){
@@ -78,10 +84,15 @@ function App() {
           todos={todos}
         />
 
-        <TodoList todos={todos}> 
+        <TodoList 
+          todos={todos}
+          isLoading={isLoading}
+        > 
+          {isLoading && <LoadingSkeleton />}
+          {onError && <p>Danos un momento, tenemos complicaciones</p>}
 
-          {(categorySelected === 'all' && todos.filter(todo => todo.completed === false).length < 1) &&
-            <p>Has completado todas tus tareas</p>
+          {!isLoading && todos.filter(todo => todo.completed === false).length < 1 && 
+            <p>¿Qué nuevas tareas tienes?</p>
           }
 
           {categorySelected === 'all' && 
