@@ -1,0 +1,24 @@
+.error--container{
+  display: grid;
+  place-content: center;
+}
+
+.error--icon{
+  display: grid;
+  place-content: center;
+  justify-self: center;
+  background-color: lightcoral;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+}
+
+.error--icon svg{
+  font-size: 8rem;
+  color: red;
+}
+
+.error--msg{
+  font-size: 3rem;
+  text-align: center;
+}

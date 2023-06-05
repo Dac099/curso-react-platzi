@@ -1,9 +1,16 @@
 import "./Categories.css";
+import { useContext } from "react";
+import { TodoContext } from "../Context/TodoContext";
 
-function Categories(props){
+function Categories(){
+  const {
+    categorySelected,
+    setCategorySelected,
+    todos,
+  } = useContext(TodoContext);
 
   function setSelectedStyle(category){
-    if(category === props.categorySelected){
+    if(category === categorySelected){
       return 'selected';
     }
   }
@@ -16,18 +23,18 @@ function Categories(props){
         <ul>
 
           <li
-            onClick={() => props.setCategorySelected('all')} 
+            onClick={() => setCategorySelected('all')} 
             className={setSelectedStyle('all')} 
           >
-            Todos
+            Todas
           </li>
 
-          {props.todos
+          {todos
             .filter(todo => todo.completed === false)
             .map(todo => (
               <li 
                 key={todo.category}
-                onClick={() => props.setCategorySelected(todo.category)}
+                onClick={() => setCategorySelected(todo.category)}
                 className={setSelectedStyle(todo.category)}
               >
                 {todo.category}

@@ -7,7 +7,7 @@ function TodoList (props) {
     styleClass = 'list_container';
   }
 
-  if(props.isLoading){
+  if(props.isLoading || props.onError){
     styleClass = 'list_container__empty';
   }
 

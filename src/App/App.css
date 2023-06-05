@@ -12,3 +12,8 @@
   position: relative;
 }
 
+.empty-todos--text{
+  text-align: center;
+  font-size: 2.5rem;
+  color: #f16079;
+}

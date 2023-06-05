@@ -4,9 +4,10 @@ import { CompletedTodos } from '../CompletedTodos';
 import { TodoGenerator } from '../TodoGenerator';
 import { TodoItem } from '../TodoItem';
 import { TodoList } from '../TodoList';
-import React, { useState } from 'react';
-import { useLocalStorage } from '../Hooks/useLocalStorage';
+import React, { useContext } from 'react';
 import { LoadingSkeleton } from '../LoadingSkeleton';
+import { Error } from '../Error';
+import { TodoContext } from '../Context/TodoContext';
 
 // const defaultTodos = [
 //   {
@@ -44,32 +45,13 @@ import { LoadingSkeleton } from '../LoadingSkeleton';
 
 function App() {
   const {
-    item: todos,
-    saveItems: saveTodos,
+    todos,
     isLoading,
-    onError
-  } = useLocalStorage('TODOS_SAVED', []);
-  const [categorySelected, setCategorySelected] = useState('all');
-
-  function deleteTodos(){
-    const todos_copy = [...todos];
-    const uncompleted_todos = todos_copy.filter(todo => todo.completed === false);
-
-    saveTodos(uncompleted_todos);
-  }
-
-  function completeTodo(todo_title) {
-    const todos_copy = [...todos];
-    const item_target = todos_copy.find(todo => todo.title.toLowerCase() === todo_title.toLowerCase());
-    const item_index = todos_copy.findIndex(todo => todo.title === todo_title);
-
-    todos_copy[item_index] = {
-      ...item_target,
-      completed: true,
-    };
-
-    saveTodos(todos_copy);
-  }
+    onError, 
+    categorySelected,
+    deleteTodos,
+    completeTodo
+  } = useContext(TodoContext);
 
   return (
     <>  
@@ -78,21 +60,18 @@ function App() {
       </section>
 
       <section className='todos_container'>
-        <Categories 
-          categorySelected={categorySelected}
-          setCategorySelected={setCategorySelected}
-          todos={todos}
-        />
+        <Categories />
 
         <TodoList 
           todos={todos}
           isLoading={isLoading}
+          onError={onError}
         > 
           {isLoading && <LoadingSkeleton />}
-          {onError && <p>Danos un momento, tenemos complicaciones</p>}
+          {onError && <Error msg={"Opps! Lo sentimos, tuvimos un error al cargar tus tareas"}/>}
 
-          {!isLoading && todos.filter(todo => todo.completed === false).length < 1 && 
-            <p>¿Qué nuevas tareas tienes?</p>
+          {(!isLoading && !onError) && todos.filter(todo => todo.completed === false).length < 1 && 
+            <p className='empty-todos--text'>¿Qué nuevas tareas tienes?</p>
           }
 
           {categorySelected === 'all' && 
