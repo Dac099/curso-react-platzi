@@ -12,6 +12,7 @@ function TodoProvider({children}){
     onError
   } = useLocalStorage('TODOS_SAVED', []);
   const [categorySelected, setCategorySelected] = useState('all');
+  const [openModal, setOpenModal] = useState(false);
 
   function deleteTodos(){
     const todos_copy = [...todos];
@@ -43,6 +44,8 @@ function TodoProvider({children}){
       setCategorySelected,
       deleteTodos,
       completeTodo,
+      openModal,
+      setOpenModal,
     }}>
       {children}
     </TodoContext.Provider>

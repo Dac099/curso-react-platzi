@@ -8,6 +8,9 @@ import React, { useContext } from 'react';
 import { LoadingSkeleton } from '../LoadingSkeleton';
 import { Error } from '../Error';
 import { TodoContext } from '../Context/TodoContext';
+import { MdColorLens as ColorsIcon } from "react-icons/md";
+import { Modal } from '../Modal';
+import { ColorsOptions } from '../ColorsOptions';
 
 // const defaultTodos = [
 //   {
@@ -50,7 +53,9 @@ function App() {
     onError, 
     categorySelected,
     deleteTodos,
-    completeTodo
+    completeTodo,
+    openModal, 
+    setOpenModal,
   } = useContext(TodoContext);
 
   return (
@@ -101,11 +106,28 @@ function App() {
           }
         </TodoList>  
 
-        <CompletedTodos 
-          completed_todos={todos.filter(todo => todo.completed)}
-          deleteTodos={deleteTodos}
-        />
-      </section>  
+
+        <section className='buttons--container'> 
+
+          <button 
+            className='colors--btn'
+            type='button'
+            onClick={() => setOpenModal(true)}
+          >
+            <ColorsIcon /> Colores
+          </button>
+
+          <CompletedTodos 
+            completed_todos={todos.filter(todo => todo.completed)}
+            deleteTodos={deleteTodos}
+          />
+
+        </section>
+
+      </section> 
+
+      {openModal && <Modal modalContent={<ColorsOptions />}/>}
+
     </>
   );
 }

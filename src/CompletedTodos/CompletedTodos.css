@@ -1,7 +1,11 @@
+.container--completed--todos{
+  position: relative;
+}
+
 .completed_container{
-  position: fixed;
-  bottom: 120px;
-  right: 50px;
+  position: absolute;
+  bottom: 80px;
+  right: 0px;
   border: 2px solid #000;
   border-radius: 1rem;
   padding: 1rem;
@@ -13,9 +17,9 @@
 }
 
 .completed_container--empty{
-  position: fixed;
-  bottom: 120px;
-  right: 50px;
+  position: absolute;
+  bottom: 80px;
+  right: 0px;
   border: 2px solid #000;
   border-radius: 1rem;
   padding: 1rem;
@@ -71,9 +75,6 @@
 }
 
 .completed_btn{
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
   height: 60px;
   width: 200px;
   border-radius: 1rem;

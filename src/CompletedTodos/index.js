@@ -8,7 +8,7 @@ function CompletedTodos(props){
 
   if(props.completed_todos.length < 1){
     return (
-      <article>
+      <article className='container--completed--todos'>
         {showCompletedTodos && 
           <section className='completed_container--empty'>
             <p>No tienes TODOs completados</p>
