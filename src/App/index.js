@@ -11,6 +11,7 @@ import { TodoContext } from '../Context/TodoContext';
 import { MdColorLens as ColorsIcon } from "react-icons/md";
 import { Modal } from '../Modal';
 import { ColorsOptions } from '../ColorsOptions';
+import { ColorsContext } from '../Context/ColorsContext';
 
 // const defaultTodos = [
 //   {
@@ -57,6 +58,16 @@ function App() {
     openModal, 
     setOpenModal,
   } = useContext(TodoContext);
+
+  const {
+    appColors,
+  } = useContext(ColorsContext);
+
+  const btnColorsTheme = {    
+    borderColor: appColors.border_color,
+    backgroundColor: appColors.btns_color,
+    color: appColors.text_color
+  };
 
   return (
     <>  
@@ -110,7 +121,8 @@ function App() {
         <section className='buttons--container'> 
 
           <button 
-            className='colors--btn'
+            className="colors--btn"
+            style={btnColorsTheme}
             type='button'
             onClick={() => setOpenModal(true)}
           >

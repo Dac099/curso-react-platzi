@@ -28,9 +28,7 @@
 .colors--btn{
   height: 60px;
   width: 200px;
-  border-radius: 1rem;
-  border: 2px solid #000;
-  background-color: #ffdc99;
+  border-radius: 1rem; 
   font-size: 1rem;
   font-weight: 600;
   word-spacing: 5px;
