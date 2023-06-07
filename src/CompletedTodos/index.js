@@ -1,16 +1,30 @@
 import './CompletedTodos.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ColorsContext } from '../Context/ColorsContext';
 
 function CompletedTodos(props){
   const [showCompletedTodos, setShowCompletedTodos] = useState(false)
+  const { appColors } = useContext(ColorsContext);
 
+  const btnStyle = {
+    backgroundColor: appColors.btns_color,
+    color: appColors.text_color,
+    borderColor: appColors.border_color,
+  };
+
+  const completedContainerStyles = {
+    borderColor: appColors.border_color
+  };
   
 
   if(props.completed_todos.length < 1){
     return (
       <article className='container--completed--todos'>
         {showCompletedTodos && 
-          <section className='completed_container--empty'>
+          <section 
+            className='completed_container--empty'
+            style={completedContainerStyles}
+          >
             <p>No tienes TODOs completados</p>
           </section>
         }
@@ -29,16 +43,29 @@ function CompletedTodos(props){
   return (
     <article>
       {showCompletedTodos && 
-        <section className='completed_container'>
+        <section 
+          className='completed_container'
+          style={completedContainerStyles}
+        >
           <section>
             {props.completed_todos.map(todo => (
 
               <div 
                 key={todo.title} 
-                style={{borderColor: todo.color}}
+                style={{
+                  borderColor: todo.color,
+                  backgroundColor: appColors.bg_color,
+                  color: appColors.text_color,
+                }}
               >
                 <p>{todo.title}</p>
-                <p>{todo.category}</p>
+                <p
+                  style={{
+                    color: appColors.text_color
+                  }}
+                >
+                  {todo.category}
+                </p>
               </div>
             ))}
           </section>
@@ -56,6 +83,7 @@ function CompletedTodos(props){
         type='button'
         className='completed_btn'
         onClick={() => setShowCompletedTodos(!showCompletedTodos)}
+        style={btnStyle}
       >
         Completed TODOs
       </button>

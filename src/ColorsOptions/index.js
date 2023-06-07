@@ -24,7 +24,14 @@ function ColorsOptions() {
   }
 
   return (
-    <article className="card--options">
+    <article 
+      className="card--options"
+      style={{
+        backgroundColor: appColors.bg_color,
+        borderColor: appColors.border_color,
+        color: appColors.text_color
+      }}
+    >
 
       <section className="card--colors">
 
@@ -116,6 +123,11 @@ function ColorsOptions() {
 
       <button
         onClick={handleClick}
+        style={{
+          backgroundColor: appColors.btns_color,
+          borderColor: appColors.border_color,
+          color: appColors.text_color
+        }}
       >
         Aceptar y Guardar
       </button>

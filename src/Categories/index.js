@@ -1,6 +1,7 @@
 import "./Categories.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TodoContext } from "../Context/TodoContext";
+import { ColorsContext } from "../Context/ColorsContext";
 
 function Categories(){
   const {
@@ -9,15 +10,29 @@ function Categories(){
     todos,
   } = useContext(TodoContext);
 
+  const { appColors } = useContext(ColorsContext);
+
   function setSelectedStyle(category){
     if(category === categorySelected){
       return 'selected';
     }
   }
 
+  const categoryStyle = {
+    backgroundColor: appColors.btns_color,
+    borderColor: appColors.border_color,
+    color: appColors.text_color,
+  };
+
   return (
     <article className="categories_container">
-      <p>Categorias</p>
+      <p
+        style={{
+          color: appColors.text_color
+        }}
+      >
+        Categorias
+      </p>
 
       <nav>
         <ul>
@@ -25,6 +40,7 @@ function Categories(){
           <li
             onClick={() => setCategorySelected('all')} 
             className={setSelectedStyle('all')} 
+            style={categoryStyle}
           >
             Todas
           </li>
@@ -36,6 +52,7 @@ function Categories(){
                 key={todo.category}
                 onClick={() => setCategorySelected(todo.category)}
                 className={setSelectedStyle(todo.category)}
+                style={categoryStyle}          
               >
                 {todo.category}
               </li>

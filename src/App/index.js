@@ -69,6 +69,8 @@ function App() {
     color: appColors.text_color
   };
 
+  document.getElementById('root').style.backgroundColor = appColors.bg_color;
+
   return (
     <>  
       <section className='generator_container'>
@@ -99,6 +101,7 @@ function App() {
                   title={todo.title} 
                   date={todo.date}
                   completeTodo={completeTodo}
+                  color={todo.color}
                 />
               ))
           }
@@ -112,6 +115,7 @@ function App() {
                   title={todo.title} 
                   date={todo.date}
                   completeTodo={completeTodo}
+                  color={todo.color}
                 />
               ))
           }

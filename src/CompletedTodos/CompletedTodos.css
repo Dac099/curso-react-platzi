@@ -4,8 +4,8 @@
 
 .completed_container{
   position: absolute;
-  bottom: 80px;
-  right: 0px;
+  bottom: 100px;
+  right: 20px;
   border: 2px solid #000;
   border-radius: 1rem;
   padding: 1rem;
@@ -18,8 +18,8 @@
 
 .completed_container--empty{
   position: absolute;
-  bottom: 80px;
-  right: 0px;
+  bottom: 100px;
+  right: 20px;
   border: 2px solid #000;
   border-radius: 1rem;
   padding: 1rem;
