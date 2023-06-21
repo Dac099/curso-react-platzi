@@ -21,6 +21,12 @@ function TodoProvider({children}){
     saveTodos(uncompleted_todos);
   }
 
+  function addTodo(newTodo){
+    const newTodos = [newTodo, ...todos];
+    console.log(newTodos)
+    saveTodos(newTodos);
+  }
+
   function completeTodo(todo_title) {
     const todos_copy = [...todos];
     const item_target = todos_copy.find(todo => todo.title.toLowerCase() === todo_title.toLowerCase());
@@ -46,6 +52,7 @@ function TodoProvider({children}){
       completeTodo,
       openModal,
       setOpenModal,
+      addTodo
     }}>
       {children}
     </TodoContext.Provider>

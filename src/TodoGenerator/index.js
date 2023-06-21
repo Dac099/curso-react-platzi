@@ -1,18 +1,46 @@
 import "./TodoGenerator.css";
 import React, { useState, useContext } from "react";
 import { ColorsContext } from "../Context/ColorsContext";
+import { TodoContext } from "../Context/TodoContext";
 
 function TodoGenerator() {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-  const [color, setColor] = useState('#000000');
+  const [color, setColor] = useState('#D2E4C9');
   const { appColors } = useContext(ColorsContext);
+  const { addTodo } = useContext(TodoContext);
 
   function handleSubmit(e){
     e.preventDefault();
 
-    console.log(title, category, color);
+    if(title === '' || category === '' || color === ''){
+      alert('Debes de llenar todos los campos');
+      return;
+    }
+
+    const newTodo = {
+      title: title, 
+      category: category,
+      color: color, 
+      date: getCurrentDate(),
+      completed: false
+    }
+
+    setTitle('');
+    setCategory('');
+    setColor('#D2E4C9');
+
+    addTodo(newTodo);
   } 
+
+  function getCurrentDate(){
+    const date = new Date();
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear().toString();
+  
+    return `${day}/${month}/${year}`;
+  }
 
   return (
     <article 
@@ -55,7 +83,8 @@ function TodoGenerator() {
             onChange={e => setTitle(e.target.value)}
             style={{
               borderColor: appColors.border_color,
-              backgroundColor: appColors.bg_color
+              backgroundColor: appColors.bg_color,
+              color: appColors.text_color
             }}
           ></input>
         </div>
@@ -78,7 +107,8 @@ function TodoGenerator() {
             onChange={e => setCategory(e.target.value)}
             style={{
               borderColor: appColors.border_color,
-              backgroundColor: appColors.bg_color
+              backgroundColor: appColors.bg_color,
+              color: appColors.text_color
             }}
           ></input>
         </div>
